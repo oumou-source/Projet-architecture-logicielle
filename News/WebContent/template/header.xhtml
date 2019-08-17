@@ -1,0 +1,84 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form>
+		<ui:fragment rendered="#{userBean.user.connected}">
+			<ul
+				class="sky-mega-menu sky-mega-menu-anim-flip sky-mega-menu-response-to-icons">
+				<li><a href="#{request.contextPath}/pages/index.jsf"><i
+						class="fa fa-single fa-home"></i></a></li>
+				<ui:fragment rendered="#{userBean.fGestion}">
+					<li><a href="#"><i class="fa fa-cogs"></i>#{msg.gestion}<i
+							class="fa fa-indicator fa-chevron-down"></i></a>
+						<div class="grid-container3">
+							<ul>
+
+								<ui:fragment rendered="#{userBean.fGesArticles}">
+									<li><p:commandLink styleClass="fa fa-list-alt"
+											action="#{managerBean.listeArticles()}"
+											 value=" Articles" />
+									</li>
+								</ui:fragment>
+
+
+
+								<ui:fragment rendered="#{userBean.fGesCategories}">
+									<li><p:commandLink styleClass="fa fa-list-alt"
+											action="#"
+											value=" Categories" /></li>
+								</ui:fragment>
+
+								
+							</ul>
+						</div></li>
+				</ui:fragment>
+
+				
+	<ui:fragment rendered="#{userBean.fGesGroupes || userBean.fGesUsers}">
+					<li><a href="#"><i class="fa fa-users"></i> Utilisateurs<i
+							class="fa fa-indicator fa-chevron-down"></i></a>
+						<div class="grid-container3">
+							<ul>
+
+								<ui:fragment rendered="#{userBean.fGesGroupes}">
+									<li><p:commandLink 
+											action="#{userBean.listeGroupes()}"
+											value=" Groupes"/></li>
+
+								</ui:fragment>
+								<ui:fragment rendered="#{userBean.fGesUsers}">
+									<li><p:commandLink 
+											action="#{userBean.listUsers()}"
+											value=" Utilisateurs" /></li>
+								</ui:fragment>
+							</ul>
+						</div></li>
+				</ui:fragment>
+
+			
+
+				<li class="right">#{userBean.user.nomPrenom}</li>
+
+				<li class="right"><h:commandLink action="#{userBean.logout()}"
+						value="">
+						<i class="fa fa-power-off"></i>#{msg.logout}
+				</h:commandLink>
+					<div class="grid-container3">
+						<ul>
+							<li><p:commandLink styleClass="fa fa-user"
+									action="#{userBean.editUser(userBean.user.id)}" value=" Profil" />
+							</li>
+						</ul>
+					</div></li>
+
+
+			</ul>
+		</ui:fragment>
+
+
+	</h:form>
+</ui:composition>

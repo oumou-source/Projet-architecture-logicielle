@@ -1,0 +1,174 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/template/layout.xhtml">
+
+	<ui:define name="content">
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<h:form id="main-form">
+
+					<ui:fragment rendered="true">
+						<div class="row">
+							<div class="col-lg-12">
+								<h1 class="page-header">
+									#{msg.administrations} <small>#{msg.parameter}</small>
+								</h1>
+								<p:panelGrid columns="2">
+									<p:outputLabel value="#{msg.alerteAssurance}" />
+									<p:inputText value="#{managerBean.parameter.alerteAssurance}" required="true">
+										 <p:clientValidator />
+									</p:inputText>
+
+									<p:outputLabel value="#{msg.alerteEntretien}" />
+									<p:inputText value="#{managerBean.parameter.alerteEntretien}" required="true">
+										 <p:clientValidator />
+									</p:inputText>
+									
+									<p:outputLabel value="#{msg.alerteVisiteTechnique}" />
+									<p:inputText value="#{managerBean.parameter.alerteVisiteTechnique}" required="true">
+										 <p:clientValidator />
+									</p:inputText>
+									
+									<p:outputLabel value="#{msg.alerteJauge}" />
+									<p:inputText value="#{managerBean.parameter.alerteJauge}" required="true">
+										 <p:clientValidator />
+									</p:inputText>
+									
+									<p:outputLabel value="#{msg.alerteExteinteur}" />
+									<p:inputText value="#{managerBean.parameter.alerteExteinteur}" required="true">
+										 <p:clientValidator />
+									</p:inputText>
+									
+									
+									
+								</p:panelGrid>
+							</div>
+						</div>
+					</ui:fragment>
+					<ui:fragment rendered="true" >
+						<div class="row">
+							<div class="col-lg-12">
+								<h1 class="page-header">
+									#{msg.administrations} <small>#{msg.maintenance}</small>
+								</h1>
+								<p:accordionPanel style="width:647px">
+						<p:tab title="Vidange" titleStyleClass="couleur1">						
+							<p:panelGrid columns="2">						
+							<p:outputLabel value=""/>	
+							<p:outputLabel value="À effectuer tous les :" />								
+							<p:outputLabel value="#{msg.moteur}"/>																			
+							<p:inputText value="#{managerBean.parameter.moteur}"/>						
+							</p:panelGrid>
+						</p:tab>
+						
+						<p:tab title="Mise à niveau des liquides" titleStyleClass="couleur1">
+						<p:panelGrid columns="2">
+						<p:outputLabel value="" />
+							<p:outputLabel value="À effectuer tous les :" />
+						<p:outputLabel value="#{msg.boite_vitesse}"/>
+						<p:inputText value="#{managerBean.parameter.boiteVitesse}"/>
+						<p:outputLabel value="#{msg.roulement_roue}"/>
+						<p:inputText value="#{managerBean.parameter.roulementRoue}" />
+						<p:outputLabel value="#{msg.direction}"/>
+						<p:inputText value="#{managerBean.parameter.direction}"/>
+						<p:outputLabel value="#{msg.liquide_frein}"/>
+						<p:inputText value="#{managerBean.parameter.liquideFrein}"/>
+						<p:outputLabel value="#{msg.commande_embrayage}"/>
+						<p:inputText value="#{managerBean.parameter.commandeEmbrayage}"/>
+						<p:outputLabel value="#{msg.liquide_refroidissement}"/>
+						<p:inputText value="#{managerBean.parameter.liquideRefroidissement}"/>
+						</p:panelGrid>
+						</p:tab>	
+						
+						<p:tab title="Graissage" titleStyleClass="couleur1">						
+							<p:panelGrid columns="2">	
+							<p:outputLabel value="" />
+							<p:outputLabel value="À effectuer tous les :" />					
+							<p:outputLabel value="#{msg.chassis}"/>
+							<p:inputText value="#{managerBean.parameter.chassis}"/>
+							</p:panelGrid>
+						</p:tab>
+						
+						<p:tab title="Échange" titleStyleClass="couleur1">						
+							<p:panelGrid columns="2">
+							<p:outputLabel value="" />
+							<p:outputLabel value="À effectuer tous les :" />						
+							<p:outputLabel value="#{msg.filtre_turbo}"/>
+							<p:inputText value="#{managerBean.parameter.filtreTurbo}"/>
+							<p:outputLabel value="#{msg.filtre_gasoil}"/>
+							<p:inputText value="#{managerBean.parameter.filtreGasoil}"/>
+							<p:outputLabel value="#{msg.filtre_air}"/>
+							<p:inputText value="#{managerBean.parameter.filtreAir}"/>
+							</p:panelGrid>
+						</p:tab>
+						
+						<p:tab title="Nettoyage" titleStyleClass="couleur1">						
+							<p:panelGrid columns="2">
+							<p:outputLabel value="" />
+							<p:outputLabel value="À effectuer tous les :" />						
+							<p:outputLabel value="#{msg.prefiltre_gasoil}"/>
+							<p:inputText value="#{managerBean.parameter.prefiltreGasoil}"/>
+							</p:panelGrid>
+						</p:tab>
+						
+						<p:tab title="Contrôle" titleStyleClass="couleur1">
+						<p:panelGrid columns="2">
+						<p:outputLabel value="" />
+							<p:outputLabel value="À effectuer tous les :" />
+						<p:outputLabel value="#{msg.etat_courroies}"/>
+						<p:inputText value="#{managerBean.parameter.etatCourroies}"/>
+						<p:outputLabel value="#{msg.verifier_fuites}"/>
+						<p:inputText value="#{managerBean.parameter.verifierFuites}" />
+						<p:outputLabel value="#{msg.radiateur}"/>
+						<p:inputText value="#{managerBean.parameter.radiateur}"/>
+						<p:outputLabel value="#{msg.alternateur}"/>
+						<p:inputText value="#{managerBean.parameter.alternateur}"/>
+						<p:outputLabel value="#{msg.verifier_conduites}"/>
+						<p:inputText value="#{managerBean.parameter.verifierConduites}"/>
+						<p:outputLabel value="#{msg.ventilateur}"/>
+						<p:inputText value="#{managerBean.parameter.ventilateur}"/>
+						<p:outputLabel value="#{msg.absence_fuites}"/>
+						<p:inputText value="#{managerBean.parameter.absenceFuites}"/>
+						<p:outputLabel value="#{msg.tuyau}"/>
+						<p:inputText value="#{managerBean.parameter.tuyau}"/>
+						<p:outputLabel value="#{msg.suspensions_pneu}"/>
+						<p:inputText value="#{managerBean.parameter.suspensionsPneu}"/>
+						<p:outputLabel value="#{msg.etat_ressorts}"/>
+						<p:inputText value="#{managerBean.parameter.etatRessorts}"/>
+						<p:outputLabel value="#{msg.croisillons}"/>
+						<p:inputText value="#{managerBean.parameter.croisillons}"/>
+						<p:outputLabel value="#{msg.epaisseur}"/>
+						<p:inputText value="#{managerBean.parameter.epaisseur}"/>
+						<p:outputLabel value="#{msg.verifier_usure_pneus}"/>
+						<p:inputText value="#{managerBean.parameter.verifUsurePneus}"/>
+						<p:outputLabel value="#{msg.batterie}"/>
+						<p:inputText value="#{managerBean.parameter.batterie}"/>
+						<p:outputLabel value="#{msg.direction_assistee}"/>
+						<p:inputText value="#{managerBean.parameter.directionAssistee}"/>
+						</p:panelGrid>
+						</p:tab>
+						
+						<p:tab title="Réglage" titleStyleClass="couleur1">						
+							<p:panelGrid columns="2">
+							<p:outputLabel value="" />
+							<p:outputLabel value="À effectuer tous les :" />						
+							<p:outputLabel value="#{msg.frein}"/>
+							<p:inputText value="#{managerBean.parameter.frein}"/>
+							</p:panelGrid>
+						</p:tab>
+						
+						</p:accordionPanel>	
+						<p:spacer />
+						<p:commandButton value="#{msg.save}" update="@form"	actionListener="#{managerBean.saveParameter()}" />
+							</div>					
+						</div>					
+					</ui:fragment>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

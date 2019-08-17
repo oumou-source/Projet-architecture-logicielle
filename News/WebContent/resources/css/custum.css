@@ -1,0 +1,273 @@
+/*WIZARD*/
+.ui-wizard-content {
+	background: white;
+	padding: 10px;
+}
+
+.ui-wizard-step-titles>.ui-state-default {
+	border: none;
+	color: white;
+	font-weight: lighter;
+}
+
+.ui-wizard-navbar {
+	margin-top: 10px;
+}
+
+.ui-wizard-nav-next>.ui-button-text {
+	padding-left: 1em !important;
+	padding-right: 2.1em !important;
+}
+
+.ui-wizard-nav-next>.ui-button-icon-left {
+	right: .5em !important;
+	float: right;
+	left: auto;
+}
+
+.ui-wizard-step-separator {
+	margin-right: 10px !important;
+}
+
+.ui-wizard-step-number {
+	padding-left: 15px !important;
+	padding-right: 5px !important;
+}
+
+/*SURCHARGE WIZARD*/
+.ui-wizard-step-titles>.ui-state-highlight {
+	color: white !important;
+	border: none;
+	background: #0E7C31 !important;
+}
+
+.ui-wizard {
+	min-width: 700px !important;
+}
+
+.ui-wizard-content {
+	margin: 0 !important;
+}
+
+.ui-wizard-step-title {
+	padding: 10px !important;
+	margin: 0 !important;
+}
+
+.ui-wizard-step-titles>li {
+	position: relative !important;
+	border-top: 1px solid white !important;
+	border-left: 1px solid white !important;
+}
+
+.ui-wizard-step-title:after {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 20px solid #4e5a65;
+	position: absolute;
+	top: 50%;
+	margin-top: -20px;
+	left: 100%;
+	z-index: 2;
+}
+
+.ui-wizard-step-title:before {
+	content: "";
+	display: block;
+	width: 32px;
+	height: 0;
+	border-top: 22px solid transparent;
+	border-bottom: 22px solid rgba(236, 236, 236, 0);
+	border-left: 22px solid #FFFFFF;
+	position: absolute;
+	top: 50%;
+	margin-top: -21px;
+	left: 100%;
+	z-index: 2;
+}
+
+.ui-wizard-step-titles {
+	background: white;
+}
+
+.ui-state-highlight:after {
+	border-left: 20px solid #0E7C31 !important;
+}
+
+.ui-wizard-navbar {
+	background: white;
+	margin: 0;
+	padding: 20px;
+}
+
+.ui-wizard-nav-back,.ui-wizard-nav-next {
+	width: 120px;
+}
+
+.ui-wizard  select,.ui-wizard  textarea,.ui-wizard  input,.ui-wizard  .uneditable-input
+	{
+	margin-bottom: 0 !important;
+}
+
+.ui-wizard-step-title {
+	background: #D4E7B0;
+	color: #000 !important;
+}
+
+.ui-wizard-step-title:after {
+	border-left: 20px solid #D4E7B0;
+}
+
+.ui-wizard-step-titles {
+	background: #c3c7c9;
+}
+
+.ui-wizard-step-titles  li:nth-last-child(1) {
+	border-right: 1px solid white !important;
+}
+
+.ui-wizard-step-titles  li:nth-last-child(1):after {
+	border: none !important;
+}
+
+.ui-wizard-step-titles li:nth-last-child(1):before {
+	border: none !important;
+}
+
+a {
+	color: #000;
+}
+
+
+.icon-over-tab,.icon-over-tab a {
+	font-size: 25px;
+	line-height: 1.5em;
+	margin-bottom: 10px;
+}
+
+.icon-over-tab a {
+	text-decoration: none;
+}
+
+.icon-over-tab span {
+	color: red;
+	background-color: #cacaca;
+	opacity: .35;
+}
+
+.ui-state-error,.ui-widget-content .ui-state-error,.ui-widget-header .ui-state-error
+	{
+	color:red;
+	border-color: red;
+}
+
+
+.ui-wizard-step-title {
+	padding-left: 25px !important;
+}
+
+.ui-wizard-step-titles {
+	background: none;
+}
+
+
+.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default
+	{
+	text-shadow: none;
+}
+
+body {
+	padding: 20px;
+	background-attachment: fixed;
+	background-position: 50% 0;
+	background-size: cover;	
+	background: url('#{request.contextPath}/resources/img/bg-3.png');
+	background-color: beige;
+}
+
+.page-header {
+  border-bottom: 1px solid #BEA971;
+  margin: 20px 0 10px;
+}
+h1.page-header   {
+   font-size: 30;
+   color: rgb(153, 119, 10);
+} 
+.panel-heading {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+a:hover{
+	text-decoration: none;
+}
+table{
+	margin-bottom: 10px !important;
+}
+
+#page-wrapper {
+  background-color: rgba(255,255,255, 0.9);
+  border-radius: 10px;
+  margin-bottom: 100px;
+  min-height: 500px;
+  padding: 10px;
+}
+
+.red {
+  color: red;
+}
+
+/**
+* MEGA - MENU 
+**/
+.sky-mega-menu li a {
+	/*display: inline-block; */
+}
+
+.grid-container3 li a {
+	display: block;
+}
+
+.sky-mega-menu li , .grid-container3 li{
+	line-height: 35px;
+	font-size: 16px;
+}
+
+.sky-mega-menu li>div {
+	background: #fff;
+}
+
+
+.huge {
+    font-size: 40px;
+}
+.jqte {
+  margin: 0px;
+}
+
+.couleur1 {
+	background-color: #cacaca !important;
+}
+
+.ui-picklist-source , .ui-picklist-target {
+    width: 300px !important;
+}
+
+
+
+
+
+
+.tab-without-border, .tab-without-border tr, .tab-without-border td {
+    border: hidden;
+	border-color: white;
+}
+
+.obligatoire:after {
+	content: " *";
+	color: red;
+}

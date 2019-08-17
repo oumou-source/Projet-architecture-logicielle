@@ -1,0 +1,117 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/template/layout.xhtml"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:define name="content">
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<h:form id="main-form">
+
+
+<p:panel header="Articles" rendered="#{managerBean.zoneListeArticle}"
+						style="margin-bottom:20px;">
+						<div class="icon-over-tab">
+							<p:commandLink styleClass="fa fa-user" update="@form"
+								actionListener="#{managerBean.createArticle()}" value=" Nouveau article" />
+							|
+							<p:commandLink rendered="#"
+								disabled="#{managerBean.article.id == null}"
+								styleClass="fa fa-trash" update="@form"
+								actionListener="#{managerBean.deletArticle(managerBean.article.id)}"
+								value=" Supprimer">
+								<p:confirm header="Confirmation"
+									message="Voulez vous Supprimer ?" icon="ui-icon-alert" />
+							</p:commandLink>
+						</div>
+
+						<p:dataTable value="#{managerBean.listArticle}" var="article"
+							rendered="#{managerBean.listArticle.size() > 0}"
+							emptyMessage="pas d'enregsitrement" selectionMode="single"
+							selection="#{managerBean.article}" rowKey="#{article.id}"
+							paginator="true" rows="10" paginatorPosition="bottom">
+							<p:ajax event="rowSelect" update="@form" />
+
+							<p:column headerText=" Titre">
+								#{article.titre}
+							</p:column>
+							<p:column headerText=" Contenu">
+								#{article.contenu}
+							</p:column>
+							
+							<p:column style="width:62px;text-align: center">
+								<p:commandButton action="#{managerBean.editArticle(article.id)}"
+									update="@form" icon="ui-icon-pencil" title="Modifier" />
+							</p:column>
+						</p:dataTable>
+
+					</p:panel>
+
+
+    <ui:fragment rendered="#{managerBean.zoneNouveauArticle}">
+						<div class="row">
+							<div class="col-lg-12">
+								<h1 class="page-header">
+									Nouveau article
+								</h1>
+								<p:panelGrid columns="2">
+									<p:outputLabel value=" Titre" styleClass="obligatoire" />
+									<p:inputText value="#{managerBean.article.titre}"
+										required="true" requiredMessage="Nom obligatoire" />
+
+									<p:outputLabel value=" Contenu" styleClass="obligatoire" />
+                                       <p:inputTextarea rows="6" cols="33"
+                                       value="#{managerBean.article.contenu}"
+										required="true" requiredMessage="Fonction obligatoire"  />
+
+									<p:outputLabel value=" Date de creation" styleClass="obligatoire" />
+									<p:calendar value="#{managerBean.article.dateCreation}"
+										pattern="dd/MM/yyyy" navigator="true" required="true"
+										requiredMessage="Choisir la Date" />
+										
+									<p:outputLabel value=" Date de Modification"  />
+									<p:calendar value="#{managerBean.article.dateModification}"
+										pattern="dd/MM/yyyy" navigator="true" required="true"
+										requiredMessage="Choisir la Date" />
+									<p:outputLabel value="Categorie" styleClass="obligatoire"/>
+									<p:selectOneMenu
+									value="#{managerBean.article.categorie.id}"
+									required="true" requiredMessage="Choisir la categorie"
+									style="width:180px;">
+									<f:selectItem />
+									<f:selectItems value="#{managerBean.itemsCategories}" />
+								</p:selectOneMenu>
+
+									<p:spacer />
+									<p:commandButton value="#{msg.save}" icon="ui-icon-disk"
+										update="@form" actionListener="#{managerBean.saveArticle}" />
+
+								</p:panelGrid>
+							</div>
+						</div>
+					</ui:fragment>
+
+
+
+					
+					<h:form>
+						<p:growl id="message" showDetail="true" />
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Oui" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Non" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</h:form>
+
+				
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

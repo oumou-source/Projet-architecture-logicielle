@@ -1,0 +1,197 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/template/layout.xhtml">
+
+	<ui:define name="content">
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<h:form id="main-form">
+
+					<p:panel header="Groupes" rendered="#{userBean.zoneGroupe}"
+						style="margin-bottom:20px;">
+						<div class="icon-over-tab">
+							<p:commandLink styleClass="fa fa-user" update="@form"
+								actionListener="#{userBean.addGroupe()}" value=" Nouveau groupe" />
+							|
+							<p:commandLink rendered="#{userBean.fSupprimer}"
+								disabled="#{userBean.groupe.id == null}"
+								styleClass="fa fa-trash" update="@form"
+								actionListener="#{userBean.deletGroupe(userBean.groupe.id)}"
+								value=" Supprimer">
+								<p:confirm header="Confirmation"
+									message="Voulez vous Supprimer ?" icon="ui-icon-alert" />
+							</p:commandLink>
+						</div>
+
+						<p:dataTable value="#{userBean.listGroupe}" var="groupe"
+							rendered="#{userBean.listGroupe.size() > 0}"
+							emptyMessage="pas d'enregsitrement" selectionMode="single"
+							selection="#{userBean.groupe}" rowKey="#{groupe.id}"
+							paginator="true" rows="10" paginatorPosition="bottom">
+							<p:ajax event="rowSelect" update="@form" />
+
+							<p:column headerText="#{msg.nom}">
+								#{groupe.nom}
+							</p:column>
+							<p:column headerText="#{msg.description}">
+								#{groupe.description}
+							</p:column>
+							<p:column headerText="#{msg.etat}">
+								#{groupe.etat == 0 ? "Active" : "Désactivé"}
+							</p:column>
+							<p:column style="width:62px;text-align: center">
+								<p:commandButton action="#{userBean.editGroupe(groupe.id)}"
+									update="@form" icon="ui-icon-pencil" title="Modifier" />
+							</p:column>
+						</p:dataTable>
+
+					</p:panel>
+
+					<p:panel header="Nouveau groupe"
+						rendered="#{userBean.ajouterGroupe}">
+						<p:panelGrid id="groupeAdd" columns="2"
+							styleClass="tab-without-border"
+							rendered="#{userBean.ajouterGroupe}">
+							<p:outputLabel value="#{msg.nom } #{msg.groupe}"
+								styleClass="obligatoire" />
+							<p:inputText value="#{userBean.groupe.nom}" required="true"
+								requiredMessage="Choisir le nom du groupe" style="width:200px;" />
+
+							<p:outputLabel value="#{msg.profil} #{msg.groupe}"
+								styleClass="couleurTetx" />
+							<p:pickList value="#{userBean.fonnctionnalites}" var="fonn"
+								iconOnly="true" itemLabel="#{fonn}" itemValue="#{fonn}"
+								showButtonsLabel="false">
+							</p:pickList>
+
+							<p:outputLabel value="#{msg.description}"
+								styleClass="couleurTetx" />
+							<p:inputTextarea value="#{userBean.groupe.description}"
+								style="width:200px;" />
+
+							<p:outputLabel value="#{msg.etat}:" styleClass="couleurTetx" />
+							<p:selectOneMenu value="#{userBean.groupe.etat}"
+								style="width:200px;">
+								<f:selectItem itemValue="0" itemLabel="#{msg.active}" />
+								<f:selectItem itemValue="1" itemLabel="#{msg.desactive}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel />
+							<p:commandButton value="#{msg.save}" update="@form"
+								actionListener="#{userBean.saveGroupe()}" icon="ui-icon-disk" />
+
+						</p:panelGrid>
+
+					</p:panel>
+
+
+
+					<p:panel rendered="#{userBean.zoneUsers}"
+						header="Liste des utilisateurs" style="margin-bottom:20px;">
+						<div class="icon-over-tab">
+							<p:commandLink styleClass="fa fa-user" update="@form"
+								actionListener="#{userBean.addUser()}"
+								value=" Nouveau utilisateur" />
+							|
+							<p:commandLink rendered="#{userBean.fSupprimer}"
+								disabled="#{userBean.newUser.id == null}"
+								styleClass="fa fa-trash" update="@form"
+								actionListener="#{userBean.deletUtilisateur(userBean.newUser.id)}"
+								value=" Supprimer">
+								<p:confirm header="Confirmation"
+									message="Voulez vous Supprimer ?" icon="ui-icon-alert" />
+							</p:commandLink>
+						</div>
+
+						<p:dataTable value="#{userBean.users}" var="user"
+							rendered="#{userBean.users.size() > 0}"
+							emptyMessage="pas d'enregsitrement" selectionMode="single"
+							selection="#{userBean.newUser}" rowKey="#{user.id}"
+							paginator="true" rows="10" paginatorPosition="bottom">
+							<p:ajax event="rowSelect" update="@form" />
+
+							<p:column headerText="#{msg.nom}">
+								#{user.nomPrenom}
+							</p:column>
+							<p:column headerText="#{msg.userName}">
+								#{user.login}
+							</p:column>
+							
+							<p:column headerText="#{msg.groupe}">
+								#{user.groupe.nom}
+							</p:column>
+							<p:column headerText="#{msg.etat}">
+								#{user.etat == 0 ? "Activé" : "Désactivé"}
+							</p:column>
+							<p:column style="width:62px;text-align: center">
+								<p:commandButton action="#{userBean.editUser(user.id)}"
+									update=":main-form:panNewUser" icon="ui-icon-pencil"
+									title="Modifier" />
+							</p:column>
+						</p:dataTable>
+
+					</p:panel>
+
+					<p:panel rendered="#{userBean.ajouterPersonnel}"
+						header="Nouveau utilisateur">
+						<p:panelGrid id="panNewUser" columns="2"
+							styleClass="tab-without-border">
+							<h:outputLabel value="#{msg.nom}" styleClass="obligatoire" />
+							<p:inputText value="#{userBean.newUser.nomPrenom}"
+								required="true" requiredMessage="Entrez le nom"
+								style="width: 300px;" />
+
+							<h:outputLabel value=" Login" styleClass="obligatoire" />
+							<p:inputText value="#{userBean.newUser.login}"
+								style="width: 300px;" disabled="#{userBean.newUser.id != null}">
+								<f:validateLength minimum="3" />
+							</p:inputText>
+
+							<h:outputLabel value="Password" />
+							<p:password value="#{userBean.newUser.password}"
+								style="width: 300px;" />
+
+							
+							<h:outputLabel value=" Groupe" styleClass="obligatoire"
+								rendered="#{userBean.fGesUsers}" />
+							<p:selectOneMenu value="#{userBean.newUser.groupe.id}"
+								rendered="#{userBean.fGesUsers}" style="width: 300px;"
+								required="true" requiredMessage="Choisir le groupe">
+								<f:selectItem />
+								<f:selectItems value="#{userBean.listItemGroupe}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="#{msg.etat}"
+								rendered="#{userBean.fGesUsers}" />
+							<p:selectOneMenu value="#{userBean.newUser.etat}"
+								rendered="#{userBean.fGesUsers}" style="width:200px;">
+								<f:selectItem itemValue="0" itemLabel="#{msg.active}" />
+								<f:selectItem itemValue="1" itemLabel="#{msg.desactive}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel />
+							<p:commandButton value="#{msg.save}" icon="ui-icon-disk"
+								update="@form" actionListener="#{userBean.saveUser()}" />
+						</p:panelGrid>
+					</p:panel>
+
+
+					<h:form>
+						<p:growl id="message" showDetail="true" />
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Oui" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Non" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</h:form>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

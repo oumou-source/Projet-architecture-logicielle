@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title> Site d’actualité </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+	<h:outputStylesheet library="css" name="bootstrap.css" media="screen" />
+	<h:outputStylesheet library="css" name="mega-menu/sky-mega-menu.css" media="screen" />
+	<h:outputStylesheet library="css" name="font-awesome.css" media="screen" />
+	<h:outputStylesheet library="css" name="jquery-te/jquery-te-1.4.0.css" media="screen" />
+	<h:outputStylesheet library="css" name="custum.css" media="screen" />
+	
+</h:head>
+
+
+<h:body>
+	<ui:insert name="entete">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
+	<p:growl autoUpdate="true" />
+	<ui:fragment rendered="#{userBean.user.connected}">
+		<h:panelGroup id="layout">
+			<ui:insert name="content" />
+		
+			<ui:insert name="popups">
+				<ui:include src="../pages/popups.xhtml" />
+			</ui:insert>
+						
+			<ui:insert name="footer">
+				<ui:include src="footer.xhtml" />
+			</ui:insert>
+		</h:panelGroup>
+	</ui:fragment>
+	
+	<ui:fragment rendered="#{!userBean.user.connected}">
+		<h:form>
+			<div class="alert alert-warning">
+                <i class="fa fa-exclamation-triangle fa-3x"></i> #{msg.sessionExpiree}
+                <u><h:commandLink action="#{userBean.logout()}" value="#{msg.msg_Reconnexion}" /></u>
+            </div>			
+		</h:form>
+	</ui:fragment>
+</h:body>
+</html>

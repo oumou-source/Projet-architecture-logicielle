@@ -1,0 +1,1 @@
+UPDATE `ges_parc`.`vehicule` SET `chauffeur` = NULL WHERE `type` = 'Citerne';

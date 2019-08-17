@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Gestion de Bureau du Transit</title>
+	<h:outputStylesheet library="css" name="bootstrap.css" media="screen" />
+	<h:outputStylesheet library="css" name="mega-menu/sky-mega-menu.css" media="screen" />
+	<h:outputStylesheet library="css" name="custum.css" media="screen" />
+	<h:outputStylesheet library="css" name="font-awesome.css" media="screen" />
+	</h:head>
+<h:body>
+	<p:growl autoUpdate="true" />
+	
+	<h:form>
+		<center style="margin-top: 15%;">
+				<div style="width: 450px;" class="panel panel-primary">
+					<div class="panel-heading">
+						#{msg.login}
+					</div>
+					<div class="panel-body">
+						<p:panelGrid columns="2" styleClass="tab-without-border" >
+							<h:outputText value="#{msg.userName}" style="font-weight: bold;" />
+							<p:inputText value="#{userBean.user.login}" id="Login"
+								required="true" requiredMessage="Nom d'utilisateur vide !" styleClass="rsinputTetx" />
+			
+							<h:outputText value="#{msg.password}" style="font-weight: bold;" />
+							<p:password id="Password" value="#{userBean.user.password}"
+								required="true" requiredMessage="Mot de passe vide !">
+							</p:password>
+			
+							<p:spacer />
+							<p:commandButton action="#{userBean.login()}" value="#{msg.login}"  />
+						</p:panelGrid>
+					</div>
+				</div>
+			
+				
+		</center>
+
+	</h:form>
+
+</h:body>
+
+</html>
